@@ -1,2 +1,2 @@
 - name: ansible-role-tf-logserver
-  src: https://oauth2:7516c52f49c62fc18c2590b2b37a16808259a1fd@github.com/Ambisafe/ansible-role-tf-logserver.git
+  src: https://oauth2:2978507c32cbf6eb9d43d27691ed40b301d7632b@github.com/Ambisafe/ansible-role-tf-logserver.git
