@@ -1,0 +1,31 @@
+- name: testing role ansible-role-tf-logserver
+  hosts: localhost
+  gather_facts: false
+
+  # variables passed from AWX job survey:
+
+  # {{ aws_access_key }}
+  # {{ aws_secret_key }}
+  # {{ aws_region_name }}
+
+  # {{ aws_vpc }}
+  # {{ aws_subnet_id }}
+  # {{ aws_cidr_block_from_port_80 }}
+
+  # {{ ec2_ssh_public_key }}
+
+  vars:
+    ec2_name: "logserver-proxy"
+    ec2_instance_type: "t2.small"
+    ec2_ami: "ami-1d46df64"
+    ec2_docker_compose: "1.19.0"
+    ec2_nginx_version: "1.13"
+    ec2_logstash_version: "6.2.1"
+
+    es_domain_name: "elasticsearch"
+    es_version: "6.0"
+    es_instance_count: "2"
+    es_instance_type: "t2.small.elasticsearch"
+    es_volume_size: "10"
+  roles:
+    - role: ansible-role-tf-logserver

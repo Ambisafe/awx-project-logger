@@ -1,0 +1,4 @@
+- name: logserver deployment
+    src: git@github.com:Ambisafe/ansible-role-tf-logserver.git
+    scm: git
+    version: v1.0.0
