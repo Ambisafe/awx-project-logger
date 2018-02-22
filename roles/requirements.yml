@@ -1,4 +1,7 @@
-- name: ansible-role-tf
-  src: https://github.com/Ambisafe/ansible-role-tf.git
-- name: ansible-role-tf-logserver
+# Ambisafe supported roles
+- name: terraform-cli
+  src: https://github.com/Ambisafe/ansible-role-tf-cli.git
+  version: master
+- name: terraform-logserver
   src: https://github.com/Ambisafe/ansible-role-tf-logserver.git
+  version: master
