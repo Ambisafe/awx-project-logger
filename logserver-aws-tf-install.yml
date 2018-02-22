@@ -25,9 +25,9 @@
   tasks:
 
     - name: set AWS region name
-        set_fact:
-          aws_region: "{{ (lookup('file', 'aws_region_names.json') | from_json).get( aws_region_name | regex_replace('[().]','') | regex_replace('[\ ]','_') ) }}"
-        tags: ['always']
+      set_fact:
+        aws_region: "{{ (lookup('file', 'aws_region_names.json') | from_json).get( aws_region_name | regex_replace('[().]','') | regex_replace('[\ ]','_') ) }}"
+
 
     - include_role:
         name: terraform-logserver
