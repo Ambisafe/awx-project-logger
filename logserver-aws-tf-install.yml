@@ -13,13 +13,13 @@
   # {{ es_instance_type }}
   # {{ es_volume_size }}
 
-  vars:
+  # {{ ec2_name }}
+  # {{ ec2_instance_type }}
+  # {{ ec2_docker_compose }}
+  # {{ ec2_nginx_version }}
+  # {{ ec2_logstash_version }}
 
-    ec2_name: "logserver-proxy"
-    ec2_instance_type: "t2.small"
-    ec2_docker_compose: "1.19.0"
-    ec2_nginx_version: "1.13"
-    ec2_logstash_version: "6.2.1"
+  vars:
     ec2_ssh_public_key: "{{ ssh_public_key }}"
 
   tasks:
@@ -28,8 +28,5 @@
       set_fact:
         aws_region: "{{ (lookup('file', 'aws_region_names.json') | from_json).get( aws_region_name | regex_replace('[().]','') | regex_replace('[\ ]','_') ) }}"
 
-
     - include_role:
         name: terraform-logserver
-      vars:
-        aws_cidr_block_from_port_80: "{{ aws_cidr_block_from_port_80 }}"
