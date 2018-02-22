@@ -1,12 +1,11 @@
-- name: testing role ansible-role-tf-logserver
+- name: testing role terraform-logserver
   hosts: localhost
   gather_facts: false
 
   # variables passed from AWX job survey:
 
-  # {{ aws_access_key }}
-  # {{ aws_secret_key }}
   # {{ aws_region_name }}
+  # {{ aws_cidr_block_from_port_80 }}
 
   # {{ es_domain_name }}
   # {{ es_version }}
@@ -14,13 +13,10 @@
   # {{ es_instance_type }}
   # {{ es_volume_size }}
 
-  # {{ ssh_public_key }}
-
   vars:
 
     ec2_name: "logserver-proxy"
     ec2_instance_type: "t2.small"
-    ec2_ami: "ami-1d46df64"
     ec2_docker_compose: "1.19.0"
     ec2_nginx_version: "1.13"
     ec2_logstash_version: "6.2.1"
@@ -33,11 +29,7 @@
           aws_region: "{{ (lookup('file', 'aws_region_names.json') | from_json).get( aws_region_name | regex_replace('[().]','') | regex_replace('[\ ]','_') ) }}"
         tags: ['always']
 
-    - inclulde_task: tasks/aws_vpc.yml
-
     - include_role:
         name: terraform-logserver
       vars:
-        aws_vpc: "{{ ambisafe_vpc_id }}"
-        aws_subnet_id: "{{ ambisafe_vpc_subnet_id }}"
-        aws_cidr_block_from_port_80:
+        aws_cidr_block_from_port_80: "{{ aws_cidr_block_from_port_80 }}"
