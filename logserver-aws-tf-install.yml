@@ -22,7 +22,7 @@
 
     ec2_docker_compose: 1.19.0
     ec2_nginx_version: 1.13
-    ec2_logstash_version: 6.2.2
+    ec2_logstash_version: 6.2.1
 
   tasks:
 
