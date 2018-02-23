@@ -6,6 +6,11 @@
 
   # {{ aws_region_name }}
   # {{ aws_cidr_block_from_port_80 }}
+  # {{ aws_vpc_default }}
+
+  # if aws_vpc_default = 'False' :
+  ## {{ aws_vpc_id }}
+  ## {{ aws_subnet_id }}
 
   # {{ es_domain_name }}
   # {{ es_version }}
