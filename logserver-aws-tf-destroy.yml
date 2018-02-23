@@ -1,0 +1,14 @@
+- name: destroy terraform-logserver on aws
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    terraform_data_dir: "/opt/terraform/data"
+
+  tasks:
+    #destroy terraform
+    - name: Destroy the logserver installation on AWS
+      command: "terraform destroy -force -no-color "
+      args:
+        chdir: "{{ terraform_data_dir }}/terraform_logserver"
+      tags: destroy
