@@ -4,28 +4,26 @@
 
   # variables passed from AWX job survey:
 
-  # {{ aws_region_name }}
-  # {{ aws_cidr_block_from_port_80 }}
-  # {{ aws_vpc_default }}
+  # {{ aws_region_name | string }}
 
-  # if aws_vpc_default = 'False' :
-  ## {{ aws_vpc_id }}
-  ## {{ aws_subnet_id }}
+  # {{ aws_es_domain_name | string }}
+  # {{ aws_es_version | string }}
+  # {{ aws_es_instance_count | integer }}
+  # {{ aws_es_instance_type | string }}
+  # {{ aws_es_volume_size | integer }}
 
-  # {{ es_domain_name }}
-  # {{ es_version }}
-  # {{ es_instance_count }}
-  # {{ es_instance_type }}
-  # {{ es_volume_size }}
+  # {{ is_vpc_default | string }}
+  # {{ aws_vpc_id | string }}
+  # {{ aws_subnet_id | string }}
 
-  # {{ ec2_name }}
-  # {{ ec2_instance_type }}
-  # {{ ec2_docker_compose }}
-  # {{ ec2_nginx_version }}
-  # {{ ec2_logstash_version }}
 
+  # {{ proxy_instance_type | string }}
+  # {{ cidr_block_from_port_80 | string }}
   vars:
-    ec2_ssh_public_key: "{{ ssh_public_key }}"
+
+    ec2_docker_compose: 1.19.0
+    ec2_nginx_version: 1.13
+    ec2_logstash_version: 6.2
 
   tasks:
 
@@ -35,3 +33,16 @@
 
     - include_role:
         name: terraform-logserver
+      vars:
+        ec2_name: "logger-proxy-{{ es_domain_name }}"
+        ec2_instance_type: "{{ proxy_instance_type }}"
+        ec2_ssh_public_key: "{{ ssh_public_key }}"
+        es_domain_name: "{{ aws_es_domain_name }}"
+        es_version: "{{ aws_es_version }}"
+        es_instance_count: "{{ aws_es_instance_count }}"
+        es_instance_type: "{{ aws_es_instance_type }}"
+        es_volume_size: "{{ aws_es_volume_size }}"
+        aws_vpc: "{{ aws_vpc_name }}"
+        aws_vpc_default: "{{ is_vpc_default }}"
+        aws_cidr_block_from_port_80: "{{ cidr_block_from_port_80 }}"
+
