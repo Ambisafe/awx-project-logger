@@ -16,8 +16,11 @@
   # {{ aws_vpc_id | string }}
   # {{ aws_subnet_id | string }}
   # {{ aws_cidr_block_from_port_80 | string }}
-
   # {{ ec2_instance_type | string }}
+
+  # {{ kibana_login | string }}
+  # {{ kibana_htpasswd | string }}
+
   vars:
 
     ec2_docker_compose: 1.19.0
@@ -45,4 +48,7 @@
         aws_subnet_id: "{{ aws_subnet_id }}"
         aws_vpc_default: "{{  aws_vpc_default }}"
         aws_cidr_block_from_port_80: "{{ aws_cidr_block_from_port_80 }}"
+        kibana_login: "{{ kibana_login }}"
+        kibana_htpasswd: "{{ kibana_htpasswd }}"
+
 
