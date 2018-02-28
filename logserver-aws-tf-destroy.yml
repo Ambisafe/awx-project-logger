@@ -6,9 +6,15 @@
     terraform_data_dir: "/opt/terraform/data"
 
   tasks:
-    #destroy terraform
+    - name: A plan will be generated to destroy all resources
+      command: "terraform plan -destroy -no-color"
+      args:
+        chdir: "{{ terraform_data_dir }}/terraform_logserver"
+      tags: configuration
+
+    #destroy all resources
     - name: Destroy the logserver installation on AWS
-      command: "terraform destroy -force -no-color "
+      command: "terraform destroy -force -no-color"
       args:
         chdir: "{{ terraform_data_dir }}/terraform_logserver"
       tags: destroy
