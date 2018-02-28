@@ -21,6 +21,9 @@
   # {{ kibana_login | string }}
   # {{ kibana_htpasswd | string }}
 
+  # {{ route53_domain_name | string }}
+  # {{ route53_prefix_domain_name | string }}
+
   vars:
 
     ec2_docker_compose: 1.19.0
@@ -50,5 +53,7 @@
         aws_cidr_block_from_port_80: "{{ aws_cidr_block_from_port_80 }}"
         kibana_login: "{{ kibana_login }}"
         kibana_htpasswd: "{{ kibana_htpasswd }}"
+        route53_domain_name: "{{ route53_domain_name }}"
+        route53_prefix_domain_name: "{{ route53_prefix_domain_name }}"
 
 
